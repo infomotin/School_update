@@ -36,7 +36,7 @@
                                                 @if (Auth::user()->role == 'Admin')
                                                     <th>Code</th>
                                                 @endif
-                                                <th width="25%">Action</th>
+                                                <th width="20%">Action</th>
 
                                             </tr>
                                         </thead>
@@ -53,12 +53,14 @@
                                                     @if (Auth::user()->role == 'Admin')
                                                         <td> {{ $employee->code }}</td>
                                                     @endif
-                                                    <td>
+                                                    <td >
                                                         <a href="{{ route('employee.education.add', $employee->id) }}"
-                                                            class="btn btn-info">Add Education</a>
+                                                            class="btn btn-info btn-sm">Add Education</a>
+                                                        <a href="{{ route('employee.education.add', $employee->id) }}"
+                                                            class="btn btn-primary btn-sm">Office Info</a>
                                                         <a target="_blank"
                                                             href="{{ route('employee.registration.details', $employee->id) }}"
-                                                            class="btn btn-danger">Full Profile</a>
+                                                            class="btn btn-danger btn-sm">Full Profile</a>
 
                                                     </td>
 
