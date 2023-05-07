@@ -33,7 +33,7 @@ class StdAttendanceController extends Controller
         //create relation user table and std_attendances using joining 
         
 
-        $data['all_Data'] = DB::table('std_attendances')
+        $data['allData'] = DB::table('std_attendances')
         ->join('users', 'std_attendances.id_no','=','users.id')
         ->join('assign_students','std_attendances.id_no','=','assign_students.student_id')
         ->join('student_classes','assign_students.class_id','=','student_classes.id')
@@ -43,8 +43,13 @@ class StdAttendanceController extends Controller
         ->select('std_attendances.att_date','std_attendances.att_status', 'std_attendances.login_time', 'std_attendances.logout_time', 'users.fname','users.id_no','student_classes.name as class','student_years.name as year','student_shifts.name as shift','student_groups.name as group')
         
         ->get();
+        // if($data['allData']->count() != 0){
+        //     $data['allData'] = json_encode($data['allData']);
 
-        
+        // }else{
+        //     return json_encode('No Data Found');
+        // }
+        // $data['allData'] = AssignStudent::all();
 
 
         $data['classes'] = StudentClass::all();
