@@ -15,6 +15,11 @@ class CreateStdAttendancesTable extends Migration
     {
         Schema::create('std_attendances', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_no')->comment('user_tabale (id_no = id_no)');
+            $table->date('att_date');
+            $table->string('att_status')->comment('P=present, A=absent, L=late, E=early');
+            $table->dateTime('login_time')->nullable();
+            $table->dateTime('logout_time')->nullable();
             $table->timestamps();
         });
     }

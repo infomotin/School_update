@@ -103,6 +103,7 @@
                      </li>
                      <li><a href="{{ route('monthly.fee.view') }}"><i class="ti-more"></i>Monthly Fee </a></li>
                      <li><a href="{{ route('exam.fee.view') }}"><i class="ti-more"></i>Exam Fee </a></li>
+                    <li><a href="{{ route('student.daily.att.view') }}"><i class="ti-more"></i>Student Daily Attendance </a></li>
 
 
 

@@ -46,6 +46,8 @@ use App\Http\Controllers\Backend\Setup\InstitutionInfoController;
 //EduInsDtlsController
 use App\Http\Controllers\Backend\Employee\EduInsDtlsController;
 use App\Http\Controllers\Backend\Employee\EmpOffInfoController;
+//StdAttendanceController
+use App\Http\Controllers\Backend\Student\StdAttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -312,6 +314,8 @@ Route::get('/exam/fee/view', [ExamFeeController::class, 'ExamFeeView'])->name('e
 Route::get('/exam/fee/classwisedata', [ExamFeeController::class, 'ExamFeeClassData'])->name('student.exam.fee.classwise.get');
 
 Route::get('/exam/fee/payslip', [ExamFeeController::class, 'ExamFeePayslip'])->name('student.exam.fee.payslip');
+//Std daily attendance routes
+Route::get('/std/attendance/view', [StdAttendanceController::class, 'StdAttendanceView'])->name('student.daily.att.view');
 
 }); 
 
