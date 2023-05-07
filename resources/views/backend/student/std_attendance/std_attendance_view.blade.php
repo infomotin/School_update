@@ -105,7 +105,12 @@
                             <!-- /.box-header -->
                             <div class="box-body">
                                 @php
-                                    // dd($all_att_Data);
+                                    // foreach ($all_Data as $key => $value) {
+                                    //     // print data 
+                                    //     echo '<pre>';
+                                    //     print_r($value->std_attendances);
+                                    //     echo '</pre>';
+                                    // }
                                 @endphp
                                 <div class="table-responsive">
                                     @if (!@search)
@@ -126,36 +131,46 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {{-- @foreach ($allData as $key => $value)
-                                                    <tr>
+                                                @foreach ($all_Data as $key => $value)
+                                                    {{-- echo($value); --}}
+                                                    {{-- <tr>
                                                         <td>{{ $key + 1 }}</td>
-                                                        <td> {{ $value['student']['name'] }}</td>
-                                                        <td> {{ $value['student']['id_no'] }}</td>
-                                                        <td> {{ $value->roll }} </td>
-                                                        <td> {{ $value['student_year']['name'] }}</td>
-                                                        <td> {{ $value['student_class']['name'] }}</td>
+                                                        <td>{{ date('d-m-Y', strtotime($value->['std_attendances']['att_date'])) }}</td>
+                                                        <td>{{ $value['user']['name'] }}</td>
+                                                        <td>{{ $value['year']['name'] }}</td>
+                                                        <td>{{ $value['class']['name'] }}</td>
+                                                        <td>{{ $value['shift']['name'] }}</td>
+                                                        <td>{{ $value['group']['name'] }}</td>
+                                                        <td>{{ date('h:i:s a', strtotime($value->['std_attendances']['login_time'])) }}</td>
                                                         <td>
-                                                            <img src="{{ !empty($value['student']['image']) ? url('upload/student_images/' . $value['student']['image']) : url('upload/no_image.jpg') }}"
-                                                                style="width: 60px; width: 60px;">
+                                                            @if ($value->out_time == null)
+                                                                <span class="badge badge-danger">Not Yet</span>
+                                                            @else
+                                                                {{ date('h:i:s a', strtotime($value->['std_attendances']['logout_time'])) }}
+                                                            @endif
                                                         </td>
-                                                        <td> {{ $value->year_id }}</td>
                                                         <td>
-                                                            <a title="Edit"
-                                                                href="{{ route('student.registration.edit', $value->student_id) }}"
-                                                                class="btn btn-info"> <i class="fa fa-edit"></i> </a>
-
-                                                            <a title="Promotion"
-                                                                href="{{ route('student.registration.promotion', $value->student_id) }}"
-                                                                class="btn btn-primary"><i class="fa fa-check"></i></a>
-
-                                                            <a target="_blank" title="Details"
-                                                                href="{{ route('student.registration.details', $value->student_id) }}"
-                                                                class="btn btn-danger"><i class="fa fa-eye"></i></a>
-
+                                                            @if ($value->status == 'Present')
+                                                                <span class="badge badge-success">Present</span>
+                                                            @elseif($value->status == 'Absent')
+                                                                <span class="badge badge-danger">Absent</span>
+                                                            @else
+                                                                <span class="badge badge-warning">Leave</span>
+                                                            @endif
                                                         </td>
-
-                                                    </tr>
-                                                @endforeach --}}
+                                                        <td>
+                                                            <a href="{{ route('student.registration.edit', $value->student_id) }}"
+                                                                class="mb-5 btn btn-rounded btn-info">Edit</a>
+                                                            <a href="{{ route('student.registration.promotion', $value->student_id) }}"
+                                                                class="mb-5 btn btn-rounded btn-success">Promotion</a>
+                                                            <a href="{{ route('student.registration.details', $value->student_id) }}"
+                                                                class="mb-5 btn btn-rounded btn-primary">View</a>
+                                                            <a href="{{ route('student.registration.delete', $value->student_id) }}"
+                                                                class="mb-5 btn btn-rounded btn-danger">Delete</a>
+                                                        </td>
+                                                    </tr> --}}
+                                                @endforeach
+                                                
 
                                             </tbody>
                                             <tfoot>
@@ -166,7 +181,7 @@
                                         <table id="example1" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
-                                                    <<th width="2%">SL</th>
+                                                    <th width="2%">SL</th>
                                                         <th>Date</th>
                                                         <th>Name</th>
                                                         <th>Year</th>
@@ -185,34 +200,49 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {{-- @foreach ($allData as $key => $value)
+                                                @foreach ($all_Data as $key => $value)
+                                                    {{-- echo($value); --}}
                                                     <tr>
-                                                        <td>{{ $key + 1 }}</td>
-                                                        <td> {{ $value['student']['name'] }}</td>
-                                                        <td> {{ $value['student']['id_no'] }}</td>
-                                                        <td> {{ $value->roll }} </td>
-                                                        <td> {{ $value['student_year']['name'] }}</td>
-                                                        <td> {{ $value['student_class']['name'] }}</td>
-                                                        <td>
-                                                            <img src="{{ !empty($value['student']['image']) ? url('upload/student_images/' . $value['student']['image']) : url('upload/no_image.jpg') }}"
-                                                                style="width: 60px; width: 60px;">
-                                                        </td>
-                                                        <td> {{ $value->year_id }}</td>
-                                                        <td>
-                                                            <a title="Edit"
-                                                                href="{{ route('student.registration.edit', $value->student_id) }}"
-                                                                class="btn btn-info"> <i class="fa fa-edit"></i> </a>
-
-                                                            <a title="Promotion"
-                                                                href="{{ route('student.registration.promotion', $value->student_id) }}"
-                                                                class="btn btn-primary"><i class="fa fa-check"></i></a>
-
-                                                            <a target="_blank" title="Details"
-                                                                href="{{ route('student.registration.details', $value->student_id) }}"
-                                                                class="btn btn-danger"><i class="fa fa-eye"></i></a>
-                                                        </td>
+                                                        <td>{{ $value }}</td>
+                                                        {{-- <td>{{ date('d-m-Y', strtotime($value->std_attendances)) }}</td> --}}
+                                                        {{-- <td>{{ $value->user->name }}</td>
+                                                        <td>{{ $value->year->name }}</td>
+                                                        <td>{{ $value->class->name }}</td>
+                                                        <td>{{ $value->shift->name }}</td>
+                                                        <td>{{ $value->group->name }}</td>
+                                                        <td>{{ date('h:i:s a', strtotime($value->std_attendances->login_time)) }}</td>
+                                                        <td> --}}
+                                                            {{-- @if ($value->out_time == null)
+                                                                <span class="badge badge-danger">Not Yet</span>
+                                                            @else
+                                                                {{ date('h:i:s a', strtotime($value->std_attendances->logout_time)) }}
+                                                            @endif --}}
+                                                        {{-- </td>
+                                                        <td> --}}
+                                                            {{-- @if ($value->status == 'Present')
+                                                                <span class="badge badge-success">Present</span>
+                                                            @elseif($value->status == 'Absent')
+                                                                <span class="badge badge-danger">Absent</span>
+                                                            @else
+                                                                <span class="badge badge-warning">Leave</span>
+                                                            @endif --}}
+                                                        {{-- </td>
+                                                        @if (Auth::user()->role == 'Admin')
+                                                            <td>{{ $value->user->code }}</td>
+                                                        @endif --}}
+                                                        {{-- <td>
+                                                            <a href="{{ route('student.registration.edit', $value->student_id) }}"
+                                                                class="mb-5 btn btn-rounded btn-info">Edit</a>
+                                                            <a href="{{ route('student.registration.promotion', $value->student_id) }}"
+                                                                class="mb-5 btn btn-rounded btn-success">Promotion</a>
+                                                            <a href="{{ route('student.registration.details', $value->student_id) }}"
+                                                                class="mb-5 btn btn-rounded btn-primary">View</a>
+                                                            <a href="{{ route('student.registration.delete', $value->student_id) }}"
+                                                                class="mb-5 btn btn-rounded btn-danger">Delete</a>
+                                                        </td> --}}
                                                     </tr>
-                                                @endforeach --}}
+                                                    
+                                                @endforeach
                                             </tbody>
                                             <tfoot>
 

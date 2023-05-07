@@ -29,14 +29,22 @@ class StdAttendanceController extends Controller
 
     // StdAttendanceView
     public function StdAttendanceView(){
-        $data['std_data'] = User::where('usertype', 'Student')->get();
-        $data['std_att'] = StdAttendance::all();
-        //make relation with users Table and StdAttendance table where id_no = id_no 
-        $data['all_att_Data'] = DB::table('users')
-            ->join('std_attendances', 'users.id_no', '=', 'std_attendances.id_no')
-            ->select('users.*', 'std_attendances.*')
-            ->get();
+        // Create relation between users and assign_students  and std_attendances table and student_classes, student_years, student_shifts, student_groups tables wher user Table and std_attendances relation is user id = id_no and user table and assign_students relation is user id = student_id and assign_students table and std_attendances relation is student_id = id_no and student_classes table and assign_students relation is student_class_id = id and student_years table and assign_students relation is student_year_id = id and student_shifts table and assign_students relation is student_shift_id = id and student_groups table and assign_students relation is student_group_id = id
+        //create relation user table and std_attendances using joining 
+        
 
+        $data['all_Data'] = DB::table('std_attendances')
+        ->join('users', 'std_attendances.id_no','=','users.id')
+        ->join('assign_students','std_attendances.id_no','=','assign_students.student_id')
+        ->join('student_classes','assign_students.class_id','=','student_classes.id')
+        ->join('student_years','assign_students.year_id', '=', 'student_years.id')
+        ->join('student_shifts','assign_students.shift_id', '=', 'student_shifts.id')
+        ->join('student_groups','assign_students.group_id', '=', 'student_groups.id')
+        ->select('std_attendances.att_date','std_attendances.att_status', 'std_attendances.login_time', 'std_attendances.logout_time', 'users.fname','users.id_no','student_classes.name as class','student_years.name as year','student_shifts.name as shift','student_groups.name as group')
+        
+        ->get();
+
+        
 
 
         $data['classes'] = StudentClass::all();
