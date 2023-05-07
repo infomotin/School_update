@@ -56,7 +56,7 @@
                                                     <td >
                                                         <a href="{{ route('employee.education.add', $employee->id) }}"
                                                             class="btn btn-info btn-sm">Add Education</a>
-                                                        <a href="{{ route('employee.education.add', $employee->id) }}"
+                                                        <a href="{{ route('employee.officeinfo.add', $employee->id) }}"
                                                             class="btn btn-primary btn-sm">Office Info</a>
                                                         <a target="_blank"
                                                             href="{{ route('employee.registration.details', $employee->id) }}"

@@ -19,18 +19,14 @@ class CreateEmpOffInfosTable extends Migration
             $table->string('per_address')->comment('per_address=permanent_address');
             $table->string('nid')->nullable()->comment('pre_address=present_address');
             $table->string('tin')->nullable()->comment('nid=nid');
-
-            $table->string('emp_father_name')->nullable()->comment('tin=tin');
-            $table->string('emp_mother_name')->nullable()->comment('emp_father_name=emp_father_name');
-            $table->string('emp_spouse_name')->nullable()->comment('emp_mother_name=emp_mother_name');
-            //father and mother contract and address
+            //father and mother, spous  contract and address
             $table->string('emp_father_contract')->nullable()->comment('emp_spouse_name=emp_spouse_name');
             $table->string('emp_mother_contract')->nullable()->comment('emp_father_contract=emp_father_contract');
             $table->string('emp_father_address')->nullable()->comment('emp_mother_contract=emp_mother_contract');
             $table->string('emp_mother_address')->nullable()->comment('emp_father_address=emp_father_address');
-            
-
-
+            $table->string('emp_spouse_contract')->nullable()->comment('emp_mother_address=emp_mother_address');
+            $table->string('emp_spouse_address')->nullable()->comment('emp_spouse_contract=emp_spouse_contract');
+            //pay scale and bank info
             $table->string('bank_acc_no')->nullable()->comment('tin=tin');
             $table->string('bank_name')->nullable()->comment('bank_acc_no=bank_acc_no');
             $table->string('bank_branch')->nullable()->comment('bank_name=bank_name');

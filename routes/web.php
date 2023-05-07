@@ -45,6 +45,7 @@ use App\Http\Controllers\Backend\Setup\AppMasterDataController;
 use App\Http\Controllers\Backend\Setup\InstitutionInfoController;
 //EduInsDtlsController
 use App\Http\Controllers\Backend\Employee\EduInsDtlsController;
+use App\Http\Controllers\Backend\Employee\EmpOffInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -337,6 +338,10 @@ Route::get('reg/employee/education/view', [EduInsDtlsController::class, 'Employe
 Route::get('reg/employee/education/add/{id}', [EduInsDtlsController::class, 'EmployeeEducationAdd'])->name('employee.education.add');
 // store education details
 Route::post('reg/employee/education/store', [EduInsDtlsController::class, 'EmployeeEducationStore'])->name('store.employee.education');
+//employee office details
+Route::get('reg/employee/office/add/{id}', [EmpOffInfoController::class, 'EmployeeOfficeAdd'])->name('employee.officeinfo.add');
+// store office details
+Route::post('reg/employee/office/store', [EmpOffInfoController::class, 'EmployeeOfficeStore'])->name('store.employee.officeinfo');
 
 
 // Employee Salary All Routes 
