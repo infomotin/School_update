@@ -93,9 +93,9 @@
                     </div>
 
                     @php
-                        foreach ($allData as $key => $value) {
-                            print_r((array)$value['att_date']);
-                        }
+                        // foreach ($allData as $key => $value) {
+                        //     print_r((array)$value['att_date']);
+                        // }
                     @endphp
 
 
@@ -106,7 +106,7 @@
                         <div class="box">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Student Addendance </h3>
-                                <a href="{{ route('student.registration.add') }}" style="float: right;"
+                                <a href="{{ route('student.daily.att.add') }}" style="float: right;"
                                     class="mb-5 btn btn-rounded btn-success"> Add Student Addendance</a>
                             </div>
                             <!-- /.box-header -->

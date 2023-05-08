@@ -59,6 +59,36 @@ class StdAttendanceController extends Controller
 
         return view('backend.student.std_attendance.std_attendance_view', $data);
     }
+//StdAttendanceAdd
+    public function StdAttendanceAdd(){
+        $data['students'] = User::where('usertype', 'Student')->get();
+        $data['classes'] = StudentClass::all();
+        $data['years'] = StudentYear::all();
+        $data['shifts'] = StudentShift::all();
+        $data['groups'] = StudentGroup::all();
+
+        return view('backend.student.std_attendance.std_attendance_add', $data);
+    }
+    // StdAttendanceStore
+    public function StdAttendanceStore(Request $request){
+        $date = date('Y-m-d', strtotime($request->date));
+        StdAttendance::where('att_date', $date)->delete();
+        $countClass = count($request->class_id);
+        for($i=0; $i<$countClass; $i++){
+            $std = new StdAttendance();
+            $std->class_id = $request->class_id[$i];
+            $std->year_id = $request->year_id[$i];
+            $std->shift_id = $request->shift_id[$i];
+            $std->group_id = $request->group_id[$i];
+            $std->att_date = $date;
+            $std->att_status = $request->att_status[$i];
+            $std->login_time = $request->login_time[$i];
+            $std->logout_time = $request->logout_time[$i];
+            $std->save();
+        }
+        return redirect()->route('students.attendance.view')->with('success', 'Data Inserted Successfully');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

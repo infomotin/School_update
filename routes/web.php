@@ -316,7 +316,10 @@ Route::get('/exam/fee/classwisedata', [ExamFeeController::class, 'ExamFeeClassDa
 Route::get('/exam/fee/payslip', [ExamFeeController::class, 'ExamFeePayslip'])->name('student.exam.fee.payslip');
 //Std daily attendance routes
 Route::get('/std/attendance/view', [StdAttendanceController::class, 'StdAttendanceView'])->name('student.daily.att.view');
+Route::get('/std/attendance/add', [StdAttendanceController::class, 'StdAttendanceAdd'])->name('student.daily.att.add'); 
+Route::post('/std/attendance/store', [StdAttendanceController::class, 'StdAttendanceStore'])->name('store.student.daily.attendance');
 
+ 
 }); 
 
 
