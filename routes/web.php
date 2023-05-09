@@ -318,6 +318,7 @@ Route::get('/exam/fee/payslip', [ExamFeeController::class, 'ExamFeePayslip'])->n
 Route::get('/std/attendance/view', [StdAttendanceController::class, 'StdAttendanceView'])->name('student.daily.att.view');
 Route::get('/std/attendance/add', [StdAttendanceController::class, 'StdAttendanceAdd'])->name('student.daily.att.add'); 
 Route::post('/std/attendance/store', [StdAttendanceController::class, 'StdAttendanceStore'])->name('store.student.daily.attendance');
+Route::get('/std/attendance/data/load', [StdAttendanceController::class, 'StudentYeraClassShiftGroupWise'])->name('liststudent.year.class.shift.group.att');
 
  
 }); 

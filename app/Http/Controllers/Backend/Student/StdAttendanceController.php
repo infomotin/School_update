@@ -81,23 +81,37 @@ class StdAttendanceController extends Controller
 
         return view('backend.student.std_attendance.std_attendance_add', $data);
     }
+    //StudentYeraClassShiftGroupWise
+    public function StudentYeraClassShiftGroupWise(Request $request){
+        $year_id = $request->year_id;
+        $class_id = $request->class_id;
+        $shift_id = $request->shift_id;
+        $group_id = $request->group_id;
+        $data['classes'] = StudentClass::all();
+        $data['years'] = StudentYear::all();
+        $data['shifts'] = StudentShift::all();
+        $data['groups'] = StudentGroup::all();
+        $data['students'] = DB::table('users')
+        ->join('assign_students', 'users.id', '=', 'assign_students.student_id')
+        ->join('student_classes', 'assign_students.class_id', '=', 'student_classes.id')
+        ->join('student_years', 'assign_students.year_id', '=', 'student_years.id')
+        ->join('student_shifts', 'assign_students.shift_id', '=', 'student_shifts.id')
+        ->join('student_groups', 'assign_students.group_id', '=', 'student_groups.id')
+        ->select('users.fname', 'users.id_no', 'student_classes.name as class', 'student_years.name as year', 'student_shifts.name as shift', 'student_groups.name as group', 'assign_students.roll')
+        ->where('assign_students.year_id', $year_id)
+        ->where('assign_students.class_id', $class_id)
+        ->where('assign_students.shift_id', $shift_id)
+        ->where('assign_students.group_id', $group_id)
+        ->get();
+
+        // $data['allData'] = AssignStudent::with(['student'])->where('year_id', $year_id)->where('class_id', $class_id)->where('shift_id', $shift_id)->where('group_id', $group_id)->get();
+        // return $data;
+        return view('backend.student.std_attendance.std_attendance_add', $data);
+    }
+
     // StdAttendanceStore
     public function StdAttendanceStore(Request $request){
-        $date = date('Y-m-d', strtotime($request->date));
-        StdAttendance::where('att_date', $date)->delete();
-        $countClass = count($request->class_id);
-        for($i=0; $i<$countClass; $i++){
-            $std = new StdAttendance();
-            $std->class_id = $request->class_id[$i];
-            $std->year_id = $request->year_id[$i];
-            $std->shift_id = $request->shift_id[$i];
-            $std->group_id = $request->group_id[$i];
-            $std->att_date = $date;
-            $std->att_status = $request->att_status[$i];
-            $std->login_time = $request->login_time[$i];
-            $std->logout_time = $request->logout_time[$i];
-            $std->save();
-        }
+        DD($request->all());
         return redirect()->route('students.attendance.view')->with('success', 'Data Inserted Successfully');
     }
 

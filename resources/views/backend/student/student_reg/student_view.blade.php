@@ -16,17 +16,10 @@
                             <div class="box-header">
                                 <h4 class="box-title">Student <strong>Search</strong></h4>
                             </div>
-
                             <div class="box-body">
-
                                 <form method="GET" action="{{ route('student.year.class.wise') }}">
-
                                     <div class="row">
-
-
-
                                         <div class="col-md-4">
-
                                             <div class="form-group">
                                                 <h5>Year <span class="text-danger"> </span></h5>
                                                 <div class="controls">
@@ -38,16 +31,11 @@
                                                                 {{ @$year_id == $year->id ? 'selected' : '' }}>
                                                                 {{ $year->name }}</option>
                                                         @endforeach
-
                                                     </select>
                                                 </div>
                                             </div>
 
                                         </div> <!-- End Col md 4 -->
-
-
-
-
                                         <div class="col-md-4">
 
                                             <div class="form-group">
@@ -234,9 +222,4 @@
 
         </div>
     </div>
-
-
-
-
-
 @endsection

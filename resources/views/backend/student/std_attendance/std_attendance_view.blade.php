@@ -12,7 +12,7 @@
                                 <h4 class="box-title">Load Student <strong>Addendance</strong></h4>
                             </div>
                             <div class="box-body">
-                                <form method="GET" action="{{ route('student.year.class.wise') }}">
+                                <form method="GET" action="{{ route('liststudent.year.class.shift.group.att') }}">
                                     <div class="row">
                                         {{-- load year  --}}
                                         <div class="col-md-2">
@@ -84,7 +84,7 @@
                                         </div>
                                         <div class="col-md-1" style="padding-top: 25px;">
                                             <input type="submit" class="mb-5 btn btn-rounded btn-dark" name="search"
-                                                value="Load . . ">
+                                                value="View Student Att Data">
                                         </div> <!-- End Col md 4 -->
                                     </div><!--  end row -->
                                 </form>
@@ -111,7 +111,7 @@
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
-                                
+
                                 <div class="table-responsive">
                                     @if (!@search)
                                         <table id="example1" class="table table-bordered table-striped">
@@ -131,10 +131,10 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
-                                                        
-                                                
-                                                
+
+
+
+
 
                                             </tbody>
                                             <tfoot>
@@ -146,50 +146,48 @@
                                             <thead>
                                                 <tr>
                                                     <th width="2%">SL</th>
-                                                        <th>Date</th>
-                                                        <th>Name</th>
-                                                        <th>Year</th>
-                                                        <th>Class</th>
-                                                        <th>Shift</th>
-                                                        <th>Group</th>
-                                                        <th>logIn</th>
-                                                        <th>LogOut</th>
-                                                        <th>Status</th>
-                                                        @if (Auth::user()->role == 'Admin')
-                                                            <th>Code</th>
-                                                        @endif
-                                                        <th width="15%">Action</th>
+                                                    <th>Date</th>
+                                                    <th>Name</th>
+                                                    <th>Year</th>
+                                                    <th>Class</th>
+                                                    <th>Shift</th>
+                                                    <th>Group</th>
+                                                    <th>logIn</th>
+                                                    <th>LogOut</th>
+                                                    <th>Status</th>
+                                                    @if (Auth::user()->role == 'Admin')
+                                                        <th>Code</th>
+                                                    @endif
+                                                    <th width="15%">Action</th>
 
 
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($allData as $key=>$value )
-                                                <tr>
-                                                    <td>{{ $key+1 }}</td>
-                                                    <td>{{ date('d-m-Y',strtotime($value->att_date)) }}</td>
-                                                    <td>{{ $value->fname }}</td>
-                                                    <td>{{ $value->year }}</td>
-                                                    <td>{{ $value->class }}</td>
-                                                    <td>{{ $value->shift }}</td>
-                                                    <td>{{ $value->group }}</td>
-                                                    <td>{{ date('h:i:s a',strtotime($value->login_time)) }}</td>
-                                                    <td>{{ date('h:i:s a',strtotime($value->logout_time)) }}</td>
-                                                    <td>{{ $value->att_status }}</td>
-                                                    @if (Auth::user()->role == 'Admin')
-                                                        <td>{{ $value->code }}</td>
-                                                    @endif
-                                                    <td>
-                                                        <a href="#" class="btn btn-rounded btn-info mb-5">Edit</a>
-                                                        <a href="#" class="btn btn-rounded btn-success mb-5">Details</a>
-                                                    </td>
-                                                    
-                                                @endforeach 
-                                                
-                                                   
-                                                    
-                                                       
-                                                
+                                                @foreach ($allData as $key => $value)
+                                                    <tr>
+                                                        <td>{{ $key + 1 }}</td>
+                                                        <td>{{ date('d-m-Y', strtotime($value->att_date)) }}</td>
+                                                        <td>{{ $value->fname }}</td>
+                                                        <td>{{ $value->year }}</td>
+                                                        <td>{{ $value->class }}</td>
+                                                        <td>{{ $value->shift }}</td>
+                                                        <td>{{ $value->group }}</td>
+                                                        <td>{{ date('h:i:s a', strtotime($value->login_time)) }}</td>
+                                                        <td>{{ date('h:i:s a', strtotime($value->logout_time)) }}</td>
+                                                        <td>{{ $value->att_status }}</td>
+                                                        @if (Auth::user()->role == 'Admin')
+                                                            <td>{{ $value->code }}</td>
+                                                        @endif
+                                                        @if (Auth::user()->role == 'Admin')
+                                                            <td>
+                                                                <a href="#"
+                                                                    class="btn btn-rounded btn-info mb-5">Edit</a>
+                                                                <a href="#"
+                                                                    class="btn btn-rounded btn-success mb-5">Details</a>
+                                                            </td>
+                                                        @endif
+                                                @endforeach
                                             </tbody>
                                             <tfoot>
 
