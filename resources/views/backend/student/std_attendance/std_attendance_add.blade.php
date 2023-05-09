@@ -90,6 +90,12 @@
                                                             name="search" value="Data Load.">
                                                     </div>
                                                 </div>
+                                            @elseif(@search)
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        date
+                                                    </div>
+                                                </div>
                                             @endif
                                             <!-- // end Row  -->
 
