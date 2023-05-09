@@ -164,7 +164,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                 
+                                                @foreach ($allData as $key=>$value )
+                                                <tr>
+                                                    <td>{{ $key+1 }}</td>
+                                                    <td>{{ date('d-m-Y',strtotime($value->att_date)) }}</td>
+                                                    <td>{{ $value->fname }}</td>
+                                                    <td>{{ $value->year }}</td>
+                                                    <td>{{ $value->class }}</td>
+                                                    <td>{{ $value->shift }}</td>
+                                                    <td>{{ $value->group }}</td>
+                                                    <td>{{ date('h:i:s a',strtotime($value->login_time)) }}</td>
+                                                    <td>{{ date('h:i:s a',strtotime($value->logout_time)) }}</td>
+                                                    <td>{{ $value->att_status }}</td>
+                                                    @if (Auth::user()->role == 'Admin')
+                                                        <td>{{ $value->code }}</td>
+                                                    @endif
+                                                    <td>
+                                                        <a href="#" class="btn btn-rounded btn-info mb-5">Edit</a>
+                                                        <a href="#" class="btn btn-rounded btn-success mb-5">Details</a>
+                                                    </td>
+                                                    
+                                                @endforeach 
+                                                
                                                    
                                                     
                                                        

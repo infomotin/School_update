@@ -118,6 +118,51 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                                @foreach ( $students as $key=>$value )
+                                                                    <tr>
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">{{ $key + 1 }}
+                                                                        </td>
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">
+                                                                            {{ $value->fname }}</td>
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">
+                                                                            {{ $value->class }}
+                                                                        </td>
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">
+                                                                            {{ $value->roll }}</td>
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">
+                                                                            <input type="radio" name="attend[{{ $value->id }}]"
+                                                                                value="Present" required> Present
+                                                                            <input type="radio" name="attend[{{ $value->id }}]"
+                                                                                value="Absent"> Absent
+                                                                        </td>
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">
+                                                                            <input type="time" name="attend_time[{{ $value->id }}]"
+                                                                                class="form-control"
+                                                                                style="width: 100px">
+                                                                        </td>
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">
+                                                                            <input type="time" name="leave_time[{{ $value->id }}]"
+                                                                                class="form-control"
+                                                                                style="width: 100px">
+                                                                        </td>
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">
+                                                                            <input type="hidden" name="student_id[]"
+                                                                                value="{{ $value->student_id }}">
+                                                                            <input type="hidden" name="class_id[]"
+                                                                                value="{{ $value->class_id }}">
+                                                                            <input type="hidden" name="date[]"
+                                                                                value="{{ date('d-m-y') }}">
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
 
                                                             </tbody>
                                                         </table>
@@ -162,66 +207,52 @@
 
                                                             </thead>
                                                             <tbody>
-                                                                @foreach ($students as $key => $employee)
-                                                                    <tr id="div{{ $employee->id }}" class="text-center">
-                                                                        <input type="hidden" name="employee_id[]"
-                                                                            value="{{ $employee->id }}">
-                                                                        <td>{{ $key + 1 }}</td>
-                                                                        <td>{{ $employee->name }}</td>
-                                                                        <td>{{ $employee->name }}</td>
-                                                                        <td>{{ $employee->name }}</td>
-                                                                        <td>
-                                                                            <select
-                                                                                name="attendance_status[{{ $employee->id }}]"
-                                                                                id="attendance_status{{ $key + 1 }}"
-                                                                                class="form-control attendance_status{{ $key + 1 }}">
-                                                                                
-                                                                                <option value="" selected=""
-                                                                                    disabled="">
-                                                                                    Select Status</option>
-                                                                                <option value="Present">Present
-                                                                                </option>
-                                                                                <option value="Absent">Absent</option>
-                                                                                <option value="Late">Late</option>
-                                                                            </select>
+                                                               @foreach ( $students as $key=>$value )
+                                                                    <tr>
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">{{ $key + 1 }}
                                                                         </td>
-                                                                        <td>
-                                                                            <input type="date"
-                                                                                name="login_time[{{ $employee->id }}]"
-                                                                                id="login_time{{ $key + 1 }}"
-                                                                                class="form-control login_time{{ $key + 1 }}"
-                                                                                placeholder="Login Time">
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">
+                                                                            {{ $value->fname }}</td>
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">
+                                                                            {{ $value->class }}
                                                                         </td>
-                                                                        <td>
-                                                                            <input type="date"
-                                                                                name="logout_time[{{ $employee->id }}]"
-                                                                                id="logout_time{{ $key + 1 }}"
-                                                                                class="form-control logout_time{{ $key + 1 }}"
-                                                                                placeholder="Logout Time">
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">
+                                                                            {{ $value->roll }}</td>
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">
+                                                                            <input type="radio" name="attend[{{ $value->id }}]"
+                                                                                value="Present" required> Present
+                                                                            <input type="radio" name="attend[{{ $value->id }}]"
+                                                                                value="Absent"> Absent
                                                                         </td>
-                                                                        <td>
-                                                                            {{-- action button  --}}
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">
+                                                                            <input type="time" name="attend_time[{{ $value->id }}]"
+                                                                                class="form-control"
+                                                                                style="width: 100px">
+                                                                        </td>
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">
+                                                                            <input type="time" name="leave_time[{{ $value->id }}]"
+                                                                                class="form-control"
+                                                                                style="width: 100px">
+                                                                        </td>
+                                                                        <td class="text-center"
+                                                                            style="vertical-align: middle;">
+                                                                            <input type="hidden" name="student_id[]"
+                                                                                value="{{ $value->student_id }}">
+                                                                            <input type="hidden" name="class_id[]"
+                                                                                value="{{ $value->class_id }}">
+                                                                            <input type="hidden" name="date[]"
+                                                                                value="{{ date('d-m-y') }}">
+                                                                        </td>
 
-                                                                            <div class="col-md-12">
-                                                                                <div
-                                                                                    class="btn-group btn-group-mini btn-corner">
-                                                                                    <a href="#"
-                                                                                        class="btn btn-xs btn-info"
-                                                                                        title="Edit">
-                                                                                        <i
-                                                                                            class="ace-icon fa fa-pencil"></i>
-                                                                                    </a>
-
-                                                                                    <a href="#"
-                                                                                        class="btn btn-xs btn-danger"
-                                                                                        title="Delete">
-                                                                                        <i
-                                                                                            class="ace-icon fa fa-trash-o"></i>
-                                                                                    </a>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </td>
+                                                                        
+                                                                        
                                                                     </tr>
                                                                 @endforeach
                                                             </tbody>
@@ -232,7 +263,7 @@
                                             <!-- // end Row  -->
 
                                             <div class="text-xs-right">
-                                                <input type="submit" class="btn btn-rounded btn-info mb-5"
+                                                <input type="submit" class="mb-5 btn btn-rounded btn-info"
                                                     value="Submit">
                                             </div>
                                 </form>

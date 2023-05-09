@@ -40,7 +40,7 @@ class StdAttendanceController extends Controller
         ->join('student_years','assign_students.year_id', '=', 'student_years.id')
         ->join('student_shifts','assign_students.shift_id', '=', 'student_shifts.id')
         ->join('student_groups','assign_students.group_id', '=', 'student_groups.id')
-        ->select('std_attendances.att_date','std_attendances.att_status', 'std_attendances.login_time', 'std_attendances.logout_time', 'users.fname','users.id_no','student_classes.name as class','student_years.name as year','student_shifts.name as shift','student_groups.name as group')
+        ->select('std_attendances.att_date','std_attendances.att_status', 'std_attendances.login_time', 'std_attendances.logout_time', 'users.*','users.id_no','student_classes.name as class','student_years.name as year','student_shifts.name as shift','student_groups.name as group')
         
         ->get();
         // if($data['allData']->count() != 0){
@@ -61,7 +61,19 @@ class StdAttendanceController extends Controller
     }
 //StdAttendanceAdd
     public function StdAttendanceAdd(){
-        $data['students'] = User::where('usertype', 'Student')->get();
+        // create db reletion between users table and assign_students whre user.id = assign_students.student_id and assign_students.class_id = class.id and assign_students.group_id = group.id and assign_students.shift_id = shift.id
+        $data['students'] = DB::table('users')
+        ->join('assign_students','users.id','=','assign_students.student_id')
+        ->join('student_classes','assign_students.class_id','=','student_classes.id')
+        ->join('student_years','assign_students.year_id', '=', 'student_years.id')
+        ->join('student_shifts','assign_students.shift_id', '=', 'student_shifts.id')
+        ->join('student_groups','assign_students.group_id', '=', 'student_groups.id')
+        ->select('users.fname','users.id_no','student_classes.name as class','student_years.name as year','student_shifts.name as shift','student_groups.name as group','assign_students.roll')
+        ->get();
+        // return $data;
+        // $data['students'] = json_encode($data['students'], true );
+
+        // $data['students'] = User::where('usertype', 'Student')->get();
         $data['classes'] = StudentClass::all();
         $data['years'] = StudentYear::all();
         $data['shifts'] = StudentShift::all();
