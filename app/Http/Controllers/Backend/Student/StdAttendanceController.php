@@ -103,6 +103,11 @@ class StdAttendanceController extends Controller
         ->where('assign_students.shift_id', $shift_id)
         ->where('assign_students.group_id', $group_id)
         ->get();
+            $qure_string = "select users.fname, users.id_no, student_classes.name as class, student_years.name as year, student_shifts.name as shift, student_groups.name as group, assign_students.roll from users inner join assign_students on users.id = assign_students.student_id inner join student_classes on assign_students.class_id = student_classes.id inner join student_years on assign_students.year_id = student_years.id inner join student_shifts on assign_students.shift_id = student_shifts.id inner join student_groups on assign_students.group_id = student_groups.id";
+            $data = DB::table($qure_string);
+           return response()->json($data);
+
+
 
         // $data['allData'] = AssignStudent::with(['student'])->where('year_id', $year_id)->where('class_id', $class_id)->where('shift_id', $shift_id)->where('group_id', $group_id)->get();
         // return $data;

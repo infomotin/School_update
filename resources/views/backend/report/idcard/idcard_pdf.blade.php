@@ -39,7 +39,7 @@
     <td><h2>Easy School ERP</h2>
 <p>School Address</p>
 <p>Phone : 343434343434</p>
-<p>Email : support@easylerningbd.com</p>
+<p>Email : dazzlesoftbd@gmail.com</p>
 <p> <b>Student ID Card </b> </p>
 
     </td> 
@@ -61,7 +61,7 @@
  <tr>
    <td>Name : {{ $value['student']['name'] }}</td>
    <td>Session : {{ $value['student_year']['name'] }}</td>
-   <td> Class : {{ $value['student_class']['name'] }}</td>
+   <td>Class : {{ $value['student_class']['name'] }}</td>
 
  </tr> 
 
