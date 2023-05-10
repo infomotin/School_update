@@ -39,7 +39,7 @@
     <td><h2>Easy School ERP</h2>
 <p>School Address</p>
 <p>Phone : 343434343434</p>
-<p>Email : support@easylerningbd.com</p>
+<p>Email : motin@texeuropbd.com</p>
 <p> <b>Student Result Report </b> </p>
 
     </td> 

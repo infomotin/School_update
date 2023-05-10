@@ -41,7 +41,7 @@
     <td><h2>Easy School ERP</h2>
 <p>School Address</p>
 <p>Phone : 343434343434</p>
-<p>Email : support@easylerningbd.com</p>
+<p>Email : </p>
 <p> <b> Student Exam Fee</b> </p>
     </td> 
   </tr>

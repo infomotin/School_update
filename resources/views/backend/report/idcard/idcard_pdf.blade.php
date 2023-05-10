@@ -39,7 +39,7 @@
     <td><h2>Easy School ERP</h2>
 <p>School Address</p>
 <p>Phone : 343434343434</p>
-<p>Email : dazzlesoftbd@gmail.com</p>
+<p>Email : motin@texeuropbd.com</p>
 <p> <b>Student ID Card </b> </p>
 
     </td> 
