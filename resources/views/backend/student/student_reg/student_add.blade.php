@@ -137,7 +137,7 @@
                                                 <!-- 3rd Row -->
 
 
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
 
                                                     <div class="form-group">
                                                         <h5>Religion <span class="text-danger">*</span></h5>
@@ -156,11 +156,7 @@
 
                                                 </div> <!-- End Col md 4 -->
 
-
-
-
-                                                <div class="col-md-4">
-
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <h5>Date of Birth <span class="text-danger">*</span></h5>
                                                         <div class="controls">
@@ -168,20 +164,41 @@
                                                                 required="">
                                                         </div>
                                                     </div>
-
                                                 </div> <!-- End Col md 4 -->
 
 
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
+                                                    <legend>Discount</legend>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <h5>Admission Fee<span class="text-danger">*</span></h5>
+                                                                <div class="controls">
+                                                                    <input type="text" name="discount[]" class="form-control"
+                                                                        required="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-                                                    <div class="form-group">
-                                                        <h5>Discount <span class="text-danger">*</span></h5>
-                                                        <div class="controls">
-                                                            <input type="text" name="discount" class="form-control"
-                                                                required="">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <h5>Tution Fee<span class="text-danger">*</span></h5>
+                                                                <div class="controls">
+                                                                    <input type="text" name="discount[]" class="form-control"
+                                                                        required="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <h5>Exam Fee<span class="text-danger">*</span></h5>
+                                                                <div class="controls">
+                                                                    <input type="text" name="discount[]" class="form-control"
+                                                                        required="">
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-
                                                 </div> <!-- End Col md 4 -->
 
 
@@ -239,11 +256,11 @@
                                                 <div class="col-md-4">
 
                                                     <div class="form-group">
-                                                        <h5>Group <span class="text-danger">*</span></h5>
+                                                        <h5>Type <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <select name="group_id" required="" class="form-control">
                                                                 <option value="" selected="" disabled="">
-                                                                    Select Group</option>
+                                                                    Select Type</option>
                                                                 @foreach ($groups as $group)
                                                                     <option value="{{ $group->id }}">{{ $group->name }}
                                                                     </option>
@@ -293,7 +310,7 @@
                                                         <h5>Profile Image <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <input type="file" name="image" class="form-control"
-                                                                id="image">
+                                                                id="frontImage">
                                                         </div>
                                                     </div>
 
@@ -304,7 +321,7 @@
 
                                                     <div class="form-group">
                                                         <div class="controls">
-                                                            <img id="showImage" src="{{ url('upload/no_image.jpg') }}"
+                                                            <img id="showFrontImage" src="{{ url('upload/no_image.jpg') }}"
                                                                 style="width: 100px; width: 100px; border: 1px solid #000000;">
 
                                                         </div>
@@ -344,10 +361,10 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#image').change(function(e) {
+            $('#frontImage').change(function(e) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    $('#showImage').attr('src', e.target.result);
+                    $('#showFrontImage').attr('src', e.target.result);
                 }
                 reader.readAsDataURL(e.target.files['0']);
             });

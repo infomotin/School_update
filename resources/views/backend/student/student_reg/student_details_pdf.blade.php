@@ -111,9 +111,9 @@
     <td>{{ $details['student']['dob'] }}</td>
   </tr>
     <tr>
-    <td>11</td>
-    <td><b>Discount </b></td>
-    <td>{{ $details['discount']['discount'] }} %</td>
+    <td >11</td>
+    <td ><b>Discount </b></td>
+    <td >%</td>
   </tr>
     <tr>
     <td>12</td>

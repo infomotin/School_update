@@ -17,7 +17,6 @@ use PDF;
 
 use App\Models\Designation;
 use App\Models\EmployeeSallaryLog;
-
 use App\Models\EmployeeAttendance;
 
 class MonthlySalaryController extends Controller
@@ -46,8 +45,10 @@ class MonthlySalaryController extends Controller
 
     	 foreach ($data as $key => $attend) {
     	 	$totalattend = EmployeeAttendance::with(['user'])->where($where)->where('employee_id',$attend->employee_id)->get();
+			$totallate = collect($totalattend)->sum('late_minute');
+			$totaldeductday = floor(collect($totalattend)->where('late_minute','>',0)->count('late_minute')/3);
+			$totalearly = collect($totalattend)->sum('early_minute');
     	 	$absentcount = count($totalattend->where('attend_status','Absent'));
-
     	 	$color = 'success';
     	 	$html[$key]['tdsource']  = '<td>'.($key+1).'</td>';
     	 	$html[$key]['tdsource'] .= '<td>'.$attend['user']['name'].'</td>';
@@ -56,10 +57,12 @@ class MonthlySalaryController extends Controller
     	 	
     	 	$salary = (float)$attend['user']['salary'];
     	 	$salaryperday = (float)$salary/30;
-    	 	$totalsalaryminus = (float)$absentcount*(float)$salaryperday;
-    	 	$totalsalary = (float)$salary-(float)$totalsalaryminus;
+			$salaryperminute = (float)$salaryperday/480;
+			$deductedamount = (float)($totallate + $totalearly)*(float)$salaryperminute;
+    	 	$totalsalaryminus = (float)($absentcount+$totaldeductday)*(float)$salaryperday;
+    	 	$totalsalary = (float)$salary-(float)$totalsalaryminus-(float)$deductedamount;
 
-    	 	$html[$key]['tdsource'] .='<td>'.$totalsalary.'$'.'</td>';
+    	 	$html[$key]['tdsource'] .='<td>'.number_format($totalsalary, 2).'$'.'</td>';
     	 	$html[$key]['tdsource'] .='<td>';
     	 	$html[$key]['tdsource'] .='<a class="btn btn-sm btn-'.$color.'" title="PaySlip" target="_blanks" href="'.route("employee.monthly.salary.payslip",$attend->employee_id).'">Fee Slip</a>';
     	 	$html[$key]['tdsource'] .= '</td>';

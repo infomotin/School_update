@@ -50,6 +50,28 @@ class AppMasterDataController extends Controller
         ]);
 
         $data = new AppMasterData();
+        $data->name = $request->name;
+        $data->code = $request->code;
+        $data->status = $request->status;
+        $data->address_line_1 = $request->address_line_1;
+        $data->address_line_2 = $request->address_line_2;
+        $data->contact_no = $request->contact_no;
+        $data->email = $request->email;
+        $data->website = $request->website;
+        $data->logo = $request->logo;
+        $data->favicon = $request->favicon;
+        $data->footer_logo = $request->footer_logo;
+        $data->footer_text = $request->footer_text;
+        $data->footer_address = $request->footer_address;
+        $data->footer_contact_no = $request->footer_contact_no;
+        $data->footer_email = $request->footer_email;
+        $data->date_of_Stub = $request->date_of_Stub;
+        $data->footer_whatsapp = $request->footer_whatsapp;
+        $data->footer_snapchat = $request->footer_snapchat;
+        $data->moto = $request->moto;
+        $data->mission = $request->mission;
+        $data->vision = $request->vision;
+        $data->save();
         
 
 

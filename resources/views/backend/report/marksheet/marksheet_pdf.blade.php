@@ -25,7 +25,7 @@
                                 <div class="row">
                                     <!-- start 1st row -->
                                     <div style="float: right" class="col-md-2 text-center">
-                                        <img src="{{ url('upload/easyschool.png') }}" style="width: 120px; height: 100px;">
+                                        {{-- <img src="{{ url('upload/easyschool.png') }}" style="width: 120px; height: 100px;"> --}}
                                     </div>
 
                                     <div class="col-md-2 text-center">
@@ -33,8 +33,8 @@
                                     </div>
 
                                     <div class="col-md-4 text-center" style="float: left;">
-                                        <h4><strong>Easy Learning School</strong></h4>
-                                        <h6><strong>Kolkata India</strong></h6>
+                                        <h4><strong>Learning Tree School</strong></h4>
+                                        {{-- <h6><strong>Kolkata India</strong></h6> --}}
                                         <h5><strong><u><i>Academic Transcript</i></u></strong></h5>
                                         <h6><strong>{{ $allMarks['0']['exam_type']['name'] }}</strong></h6>
 

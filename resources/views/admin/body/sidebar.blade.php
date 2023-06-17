@@ -15,7 +15,7 @@
                      <!-- logo for regular state and mobile devices -->
                      <div class="d-flex align-items-center justify-content-center">
                          <img src="{{ asset('backend/images/logo-dark.png') }}" alt="">
-                         <h3><b>Demo</b> Admin</h3>
+                         <h3><b>Learning Tree</b> Admin</h3>
                      </div>
                  </a>
              </div>
@@ -77,12 +77,21 @@
                      <li><a href="{{ route('student.shift.view') }}"><i class="ti-more"></i>Student Shift</a></li>
                      <li><a href="{{ route('fee.category.view') }}"><i class="ti-more"></i>Fee Category</a></li>
                      <li><a href="{{ route('fee.amount.view') }}"><i class="ti-more"></i>Fee Category Amount</a></li>
+                     <li><a href="{{ route('service.view') }}"><i class="ti-more"></i>Student Service</a></li>
+                     <li><a href="{{ route('service.amount.view') }}"><i class="ti-more"></i>Student Service Amount</a>
+                     </li>
+                     <li><a href="{{ route('department.view') }}"><i class="ti-more"></i>Department</a></li>
+                     <li><a href="{{ route('section.view') }}"><i class="ti-more"></i>Section</a></li>
                      <li><a href="{{ route('exam.type.view') }}"><i class="ti-more"></i>Exam Type</a></li>
                      <li><a href="{{ route('school.subject.view') }}"><i class="ti-more"></i>School Subject</a></li>
                      <li><a href="{{ route('assign.subject.view') }}"><i class="ti-more"></i>Assign Subject</a></li>
-                     <li><a href="{{ route('designation.view') }}"><i class="ti-more"></i>Designation </a></li>
-
-
+                     <li><a href="{{ route('designation.view') }}"><i class="ti-more"></i>Designation</a></li>
+                     <li><a href="{{ route('unit.view') }}"><i class="ti-more"></i>Unit</a></li>
+                     <li><a href="{{ route('currency.view') }}"><i class="ti-more"></i>Currency</a></li>
+                     <li><a href="{{ route('item.view') }}"><i class="ti-more"></i>Item</a></li>
+                     <li><a href="{{ route('item.category.view') }}"><i class="ti-more"></i>Item Category</a></li>
+                     <li><a href="{{ route('item.subcategory.view') }}"><i class="ti-more"></i>Item Sub Category</a>
+                     </li>
                  </ul>
              </li>
 
@@ -103,7 +112,8 @@
                      </li>
                      <li><a href="{{ route('monthly.fee.view') }}"><i class="ti-more"></i>Monthly Fee </a></li>
                      <li><a href="{{ route('exam.fee.view') }}"><i class="ti-more"></i>Exam Fee </a></li>
-                    <li><a href="{{ route('student.daily.att.view') }}"><i class="ti-more"></i>Student Daily Attendance </a></li>
+                     <li><a href="{{ route('student.daily.att.view') }}"><i class="ti-more"></i>Student Daily
+                             Attendance </a></li>
 
 
 
@@ -122,12 +132,13 @@
                      <li class="{{ $route == 'employee.registration.view' ? 'active' : '' }}"><a
                              href="{{ route('employee.registration.view') }}"><i class="ti-more"></i>Employee
                              Registration</a></li>
-                    <li class="{{ $route == 'employee.education.view' ? 'active' : '' }}"><a
+                     <li class="{{ $route == 'employee.education.view' ? 'active' : '' }}"><a
                              href="{{ route('employee.education.view') }}"><i class="ti-more"></i>Employee
                              Education Dtls.</a></li>
 
                      <li class="{{ $route == 'employee.salary.view' ? 'active' : '' }}"><a
-                             href="{{ route('employee.salary.view') }}"><i class="ti-more"></i>Employee Salary</a></li>
+                             href="{{ route('employee.salary.view') }}"><i class="ti-more"></i>Employee Salary</a>
+                     </li>
 
                      <li><a href="{{ route('employee.leave.view') }}"><i class="ti-more"></i>Employee Leave</a></li>
                      <li><a href="{{ route('employee.attendance.view') }}"><i class="ti-more"></i>Employee
@@ -178,6 +189,9 @@
                      <li class="{{ $route == 'account.salary.view' ? 'active' : '' }}"><a
                              href="{{ route('account.salary.view') }}"><i class="ti-more"></i>Employee Salary</a>
                      </li>
+                     <li class="{{ $route == 'expense.assets.view' ? 'active' : '' }}"><a
+                             href="{{ route('expense.assets.view') }}"><i class="ti-more"></i>Asset </a>
+                     </li>
 
                      <li class="{{ $route == 'other.cost.view' ? 'active' : '' }}"><a
                              href="{{ route('other.cost.view') }}"><i class="ti-more"></i>Other Cost</a></li>
@@ -186,6 +200,29 @@
                  </ul>
              </li>
 
+
+
+
+             <li class="treeview {{ $prefix == '/inventory' ? 'active' : '' }}">
+                 <a href="#">
+                     <i data-feather="inbox"></i> <span> Inventory Management</span>
+                     <span class="pull-right-container">
+                         <i class="fa fa-angle-right pull-right"></i>
+                     </span>
+                 </a>
+                 <ul class="treeview-menu">
+                     <li class="{{ $route == 'requisition.view' ? 'active' : '' }}"><a
+                             href="{{ route('requisition.view') }}"><i class="ti-more"></i>Requisition</a></li>
+                     {{-- <li class="{{ $route == 'account.salary.view' ? 'active' : '' }}"><a
+                            href="{{ route('account.salary.view') }}"><i class="ti-more"></i>Employee Salary</a>
+                    </li>
+
+                    <li class="{{ $route == 'other.cost.view' ? 'active' : '' }}"><a
+                            href="{{ route('other.cost.view') }}"><i class="ti-more"></i>Other Cost</a></li> --}}
+
+
+                 </ul>
+             </li>
 
 
 
@@ -227,29 +264,29 @@
              </li>
 
              @php
-                //  dd(Auth::user());
+                 //  dd(Auth::user());
              @endphp
              @if (Auth::user()->role == 'Supper_Admin' || Auth::user()->role == 'Admin')
-             <li class="header nav-small-cap">Setup Application</li>
+                 <li class="header nav-small-cap">Setup Application</li>
 
-             <li class="treeview {{ $prefix == '/master_setup' ? 'active' : '' }}">
-                 <a href="#">
-                     <i data-feather="server"></i></i> <span>Setup Master Database </span>
-                     <span class="pull-right-container">
-                         <i class="fa fa-angle-right pull-right"></i>
-                     </span>
-                 </a>
-                 <ul class="treeview-menu">
-                     <li class="{{ $route == 'masterdata.view' ? 'active' : '' }}"><a
-                             href="{{ route('masterdata.view') }}"><i class="ti-more"></i>Master Data Setup </a>
-                     </li>
+                 <li class="treeview {{ $prefix == '/master_setup' ? 'active' : '' }}">
+                     <a href="#">
+                         <i data-feather="server"></i></i> <span>Setup Master Database </span>
+                         <span class="pull-right-container">
+                             <i class="fa fa-angle-right pull-right"></i>
+                         </span>
+                     </a>
+                     <ul class="treeview-menu">
+                         <li class="{{ $route == 'masterdata.view' ? 'active' : '' }}"><a
+                                 href="{{ route('masterdata.view') }}"><i class="ti-more"></i>Master Data Setup </a>
+                         </li>
 
-                     <li class="{{ $route == 'institute.view' ? 'active' : '' }}"><a
-                             href="{{ route('institute.view') }}"><i class="ti-more"></i>Institution Info </a>
-                     </li>
-                 </ul>
-             </li>
-            @endif
+                         <li class="{{ $route == 'institute.view' ? 'active' : '' }}"><a
+                                 href="{{ route('institute.view') }}"><i class="ti-more"></i>Institution Info </a>
+                         </li>
+                     </ul>
+                 </li>
+             @endif
 
 
 

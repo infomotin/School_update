@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\InstitutionInfo;
+use App\Models\Department;
+use App\Models\Section;
 
 
 class EmpOffInfoController extends Controller
@@ -31,14 +33,16 @@ class EmpOffInfoController extends Controller
         //
     }
     public function EmployeeOfficeAdd($id){
+        $department =Department::all();
+        $section =Section::all();
         $emp_data = User::find($id);
         $ins_data = InstitutionInfo::all();
-        return view('backend.employee.employee_reg.employee_offinfo_add', compact('emp_data', 'ins_data'));
+        return view('backend.employee.employee_reg.employee_offinfo_add', compact('emp_data', 'ins_data','department','section'));
     }
 
     //EmployeeOfficeStore
     public function EmployeeOfficeStore(Request $request){
-        // dd($request->all());
+        dd($request->all());
         // data validation start
         // $validatedData = $request->validate([
         //     'employee_id' => 'required',
@@ -77,6 +81,8 @@ class EmpOffInfoController extends Controller
         $data->bank_acc_no = $request->bank_acc_no;
         $data->bank_name = $request->bank_name;
         $data->bank_branch = $request->bank_branch;
+        $data->department_id = $request->department_id;
+        $data->section_id = $request->section_id;
         $data->bank_routing_no = $request->bank_routing_no;
         $data->blood = $request->blood;
         $data->pre_office_name = $request->pre_office_name;
@@ -94,7 +100,7 @@ class EmpOffInfoController extends Controller
         return redirect()->route('employee.education.view')->with($notification);
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      *

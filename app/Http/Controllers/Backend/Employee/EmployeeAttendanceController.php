@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Backend\Employee;
+use Illuminate\Support\Carbon;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -27,9 +28,11 @@ use App\Models\EmployeeAttendance;
 class EmployeeAttendanceController extends Controller
 {
     
+
+
     public function AttendanceView(){
-        // $data['allData'] = EmployeeAttendance::select('date')->groupBy('date')->orderBy('id','DESC')->get();
-    	$data['allData'] = EmployeeAttendance::orderBy('id','DESC')->get();
+        $data['allData'] = EmployeeAttendance::select('date')->groupBy('date')->orderBy('date','DESC')->get();
+    	// $data['allData'] = EmployeeAttendance::orderBy('id','DESC')->get();
     	return view('backend.employee.employee_attendance.employee_attendance_view',$data);
     }
 
@@ -44,6 +47,13 @@ class EmployeeAttendanceController extends Controller
     public function AttendanceStore(Request $request){
 
     	EmployeeAttendance::where('date', date('Y-m-d', strtotime($request->date)))->delete();
+
+
+		$AllRequestData = $request->all();
+		
+
+		
+
     	$countemployee = count($request->employee_id);
     	for ($i=0; $i <$countemployee ; $i++) { 
     		$attend_status = 'attend_status'.$i;
@@ -51,6 +61,21 @@ class EmployeeAttendanceController extends Controller
     		$attend->date = date('Y-m-d',strtotime($request->date));
     		$attend->employee_id = $request->employee_id[$i];
     		$attend->attend_status = $request->$attend_status;
+			$attend->login_time = $request->login_time[$request->employee_id[$i]];
+			$attend->logout_time = $request->logout_time[$request->employee_id[$i]];
+			$logintime = strtotime($request->login_time[$request->employee_id[$i]]);
+			$startintime = strtotime("9:15");
+			$diff = ($logintime - $startintime)/60;
+			if($diff > 0){
+				$attend->late_minute = $diff;
+			}
+			$logouttime = strtotime($request->logout_time[$request->employee_id[$i]]);
+			$startouttime = strtotime("17:00");
+			$diffs = ($startouttime - $logouttime)/60;
+			if($diffs > 0){
+				$attend->early_minute = $diffs;
+			}
+
     		$attend->save();
     	} // end For Loop
 

@@ -49,9 +49,18 @@
                                                                     style="vertical-align: middle;">Sl</th>
                                                                 <th rowspan="2" class="text-center"
                                                                     style="vertical-align: middle;">Employee List</th>
+                                                                    <th rowspan="2" class="text-center" 
+                                                                    style="vertical-align: middle;">login
+                                                                    Time
+                                                                </th>
+                                                                <th rowspan="2" class="text-center"
+                                                                    style="vertical-align: middle;">logout
+                                                                    Time
+                                                                </th>
                                                                 <th colspan="3" class="text-center"
                                                                     style="vertical-align: middle; width: 30%">Attendance
                                                                     Status</th>
+                                                                   
                                                             </tr>
 
                                                             <tr>
@@ -73,7 +82,16 @@
                                                                         value="{{ $employee->id }}">
                                                                     <td>{{ $key + 1 }}</td>
                                                                     <td>{{ $employee->name }}</td>
-
+                                                                    <td class="text-center"
+                                                                    style="vertical-align: middle;">
+                                                                    <input type="time" name="login_time[{{ $employee->id }}]"
+                                                                        class="form-control" style="width: 200px">
+                                                                </td>
+                                                                <td class="text-center"
+                                                                    style="vertical-align: middle;">
+                                                                    <input type="time" name="logout_time[{{ $employee->id }}]"
+                                                                        class="form-control" style="width: 200px">
+                                                                </td>
                                                                     <td colspan="3">
                                                                         <div class="switch-toggle switch-3 switch-candy">
 

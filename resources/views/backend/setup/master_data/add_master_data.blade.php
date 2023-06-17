@@ -13,7 +13,7 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="col">
-                                <form method="post" action="{{ route('masterdata.store') }}" enctype="multipart/form-data" >
+                                <form method="post" action="{{ route('masterdata.store') }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-12">
@@ -120,8 +120,8 @@
                                                     <div class="form-group">
                                                         <h5>footer_address <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            <input type="email" name="footer_address" class="form-control"
-                                                                required="">
+                                                            <input type="email" name="footer_address"
+                                                                class="form-control" required="">
                                                         </div>
                                                     </div>
                                                 </div> <!-- End Col md 4 -->
@@ -129,8 +129,8 @@
                                                     <div class="form-group">
                                                         <h5>footer_contact_no <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            <input type="text" name="footer_contact_no" class="form-control"
-                                                                required="">
+                                                            <input type="text" name="footer_contact_no"
+                                                                class="form-control" required="">
                                                         </div>
                                                     </div>
                                                 </div> <!-- End Col md 4 -->
@@ -138,8 +138,8 @@
                                                     <div class="form-group">
                                                         <h5>footer_email <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            <input type="text" name="footer_email" class="form-control"
-                                                                required="">
+                                                            <input type="text" name="footer_email"
+                                                                class="form-control" required="">
                                                         </div>
                                                     </div>
                                                 </div> <!-- End Col md 4 -->
@@ -180,22 +180,14 @@
                                                 <!-- 4TH Row -->
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <h5>Salary <span class="text-danger">*</span></h5>
+                                                        <h5>Mission <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            <input type="text" name="salary" class="form-control"
+                                                            <input type="text" name="mission" class="form-control"
                                                                 required="">
                                                         </div>
                                                     </div>
                                                 </div> <!-- End Col md 3 -->
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <h5>Joining Date <span class="text-danger">*</span></h5>
-                                                        <div class="controls">
-                                                            <input type="date" name="join_date" class="form-control"
-                                                                required="">
-                                                        </div>
-                                                    </div>
-                                                </div> <!-- End Col md 3 -->
+                                                
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <h5>footer_logo <span class="text-danger">*</span></h5>
@@ -214,14 +206,14 @@
                                                     </div>
                                                 </div> <!-- End Col md 3 -->
                                             </div>
-                                             <div class="row">
+                                            <div class="row">
                                                 <!-- 4TH Row -->
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <h5>footer_whatsapp <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            <input type="text" name="footer_whatsapp" class="form-control"
-                                                                required="">
+                                                            <input type="text" name="footer_whatsapp"
+                                                                class="form-control" required="">
                                                         </div>
                                                     </div>
                                                 </div> <!-- End Col md 3 -->
@@ -229,8 +221,8 @@
                                                     <div class="form-group">
                                                         <h5>date_of_Stub <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            <input type="date" name="date_of_Stub" class="form-control"
-                                                                required="">
+                                                            <input type="date" name="date_of_Stub"
+                                                                class="form-control" required="">
                                                         </div>
                                                     </div>
                                                 </div> <!-- End Col md 3 -->

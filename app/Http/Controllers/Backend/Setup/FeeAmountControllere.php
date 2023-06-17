@@ -13,6 +13,7 @@ class FeeAmountControllere extends Controller
     public function ViewFeeAmount(){
         // $data['allData'] = FeeCategoryAmount::all();
         $data['allData'] = FeeCategoryAmount::select('fee_category_id')->groupBy('fee_category_id')->get();
+
     	return view('backend.setup.fee_amount.view_fee_amount',$data);
     }
 

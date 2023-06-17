@@ -38,7 +38,7 @@
                                                             </option>
                                                         </select>
                                                     </div>
-                                                </div> 
+                                                </div>
                                                 <!-- // end form group -->
                                                 <div class="row">
 
@@ -62,7 +62,7 @@
                                                             </div>
                                                         </div>
                                                         <!-- // end form group -->
-                                                    </div> 
+                                                    </div>
                                                     <!-- End col-md-5 -->
                                                     <div class="col-md-4">
                                                         <div class="form-group">
@@ -98,7 +98,7 @@
                                                             </div>
                                                         </div>
                                                         <!-- // end form group -->
-                                                    </div> 
+                                                    </div>
                                                     <!-- End col-md-5 -->
                                                     <div class="col-md-4">
                                                         <div class="form-group">
@@ -134,7 +134,7 @@
                                                             </div>
                                                         </div>
                                                         <!-- // end form group -->
-                                                    </div> 
+                                                    </div>
                                                     <!-- End col-md-5 -->
                                                     <div class="col-md-4">
                                                         <div class="form-group">
@@ -169,7 +169,7 @@
                                                             </div>
                                                         </div>
                                                         <!-- // end form group -->
-                                                    </div> 
+                                                    </div>
                                                     <!-- End col-md-5 -->
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -200,7 +200,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="row">
 
                                                     <div class="col-md-4">
@@ -214,7 +214,7 @@
                                                             </div>
                                                         </div>
                                                         <!-- // end form group -->
-                                                    </div> 
+                                                    </div>
                                                     <!-- End col-md-5 -->
                                                     <div class="col-md-4">
                                                         <div class="form-group">
@@ -236,8 +236,40 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
 
-                                            </div> <!-- // End add_item -->
+                                                    <div class="col-md-4">
+
+                                                        <div class="form-group">
+                                                            <h5>Select Department <span class="text-danger">*</span></h5>
+                                                            <div class="controls">
+                                                                <select name="department_id" required="" class="form-control">
+                                                                    <option value="" selected="" disabled="">Select Item Department</option>
+                                                                    @foreach($department as $key => $value)
+                                                                    <option value="{{$value->id}}">{{$value->dep_name}}</option>
+                                                                    @endforeach
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+
+                                                        <div class="form-group">
+                                                            <h5>Select Section <span class="text-danger">*</span></h5>
+                                                            <div class="controls">
+                                                                <select name="section_id" required="" class="form-control">
+                                                                    <option value="" selected="" disabled="">Select Item Section</option>
+                                                                    @foreach($section as $key => $value)
+                                                                    <option value="{{$value->id}}">{{$value->sec_name}}</option>
+                                                                    @endforeach
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <div class="text-xs-right">
                                                 <input type="submit" class="mb-5 btn btn-rounded btn-info" value="Submit">

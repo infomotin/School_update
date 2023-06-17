@@ -18,8 +18,8 @@ class CreateStdAttendancesTable extends Migration
             $table->integer('id_no')->comment('user_tabale (id = id_no)');
             $table->date('att_date');
             $table->string('att_status')->comment('P=present, A=absent, L=late, E=early');
-            $table->dateTime('login_time')->nullable();
-            $table->dateTime('logout_time')->nullable();
+            $table->time('login_time')->nullable();
+            $table->time('logout_time')->nullable();
             $table->timestamps();
         });
     }

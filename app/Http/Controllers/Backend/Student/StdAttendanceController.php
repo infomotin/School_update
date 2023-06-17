@@ -33,7 +33,7 @@ class StdAttendanceController extends Controller
         //create relation user table and std_attendances using joining 
         
 
-        $data['allData'] = DB::table('std_attendances')
+        $data['students'] = DB::table('std_attendances')
         ->join('users', 'std_attendances.id_no','=','users.id')
         ->join('assign_students','std_attendances.id_no','=','assign_students.student_id')
         ->join('student_classes','assign_students.class_id','=','student_classes.id')
@@ -41,7 +41,7 @@ class StdAttendanceController extends Controller
         ->join('student_shifts','assign_students.shift_id', '=', 'student_shifts.id')
         ->join('student_groups','assign_students.group_id', '=', 'student_groups.id')
         ->select('std_attendances.att_date','std_attendances.att_status', 'std_attendances.login_time', 'std_attendances.logout_time', 'users.*','users.id_no','student_classes.name as class','student_years.name as year','student_shifts.name as shift','student_groups.name as group')
-        
+        // ->where('assign_students.year_id', $year_id)
         ->get();
         // if($data['allData']->count() != 0){
         //     $data['allData'] = json_encode($data['allData']);
@@ -56,7 +56,7 @@ class StdAttendanceController extends Controller
         $data['years'] = StudentYear::all();
         $data['shifts'] = StudentShift::all();
         $data['groups'] = StudentGroup::all();
-
+        $data['mode'] = 'v';
         return view('backend.student.std_attendance.std_attendance_view', $data);
     }
 //StdAttendanceAdd
@@ -91,6 +91,8 @@ class StdAttendanceController extends Controller
         $data['years'] = StudentYear::all();
         $data['shifts'] = StudentShift::all();
         $data['groups'] = StudentGroup::all();
+
+        if($request->has('add')){
         $data['students'] = DB::table('users')
         ->join('assign_students', 'users.id', '=', 'assign_students.student_id')
         ->join('student_classes', 'assign_students.class_id', '=', 'student_classes.id')
@@ -103,21 +105,72 @@ class StdAttendanceController extends Controller
         ->where('assign_students.shift_id', $shift_id)
         ->where('assign_students.group_id', $group_id)
         ->get();
-            $qure_string = "select users.fname, users.id_no, student_classes.name as class, student_years.name as year, student_shifts.name as shift, student_groups.name as group, assign_students.roll from users inner join assign_students on users.id = assign_students.student_id inner join student_classes on assign_students.class_id = student_classes.id inner join student_years on assign_students.year_id = student_years.id inner join student_shifts on assign_students.shift_id = student_shifts.id inner join student_groups on assign_students.group_id = student_groups.id";
-            $data = DB::table($qure_string);
-           return response()->json($data);
+        $data['year_id'] = $year_id;
+        $data['class_id'] = $class_id;
+        $data['shift_id'] = $shift_id;
+        $data['group_id'] = $group_id;
+        $data['mode'] = 'a';
+        //     $qure_string = "select users.fname, users.id_no, student_classes.name as class, student_years.name as year, student_shifts.name as shift, student_groups.name as group, assign_students.roll from users inner join assign_students on users.id = assign_students.student_id inner join student_classes on assign_students.class_id = student_classes.id inner join student_years on assign_students.year_id = student_years.id inner join student_shifts on assign_students.shift_id = student_shifts.id inner join student_groups on assign_students.group_id = student_groups.id";
+        //     $data = DB::raw($qure_string);
+        //     $attributes = $request->all();
+        //    return response()->json($attributes);
 
+        // return $data;
+
+        return view('backend.student.std_attendance.std_attendance_view', $data);
+
+        }elseif($request->has('search')){
+            $data['students'] = DB::table('std_attendances')
+            ->join('users', 'std_attendances.id_no','=','users.id')
+            ->join('assign_students','std_attendances.id_no','=','assign_students.student_id')
+            ->join('student_classes','assign_students.class_id','=','student_classes.id')
+            ->join('student_years','assign_students.year_id', '=', 'student_years.id')
+            ->join('student_shifts','assign_students.shift_id', '=', 'student_shifts.id')
+            ->join('student_groups','assign_students.group_id', '=', 'student_groups.id')
+            ->select('std_attendances.att_date','std_attendances.att_status', 'std_attendances.login_time', 'std_attendances.logout_time', 'users.*','users.id_no','student_classes.name as class','student_years.name as year','student_shifts.name as shift','student_groups.name as group')
+            // ->where('assign_students.year_id', $year_id)
+            ->where('assign_students.year_id', $year_id)
+            ->where('assign_students.class_id', $class_id)
+            ->where('assign_students.shift_id', $shift_id)
+            ->where('assign_students.group_id', $group_id)
+            ->get();
+            $data['classes'] = StudentClass::all();
+            $data['years'] = StudentYear::all();
+            $data['shifts'] = StudentShift::all();
+            $data['groups'] = StudentGroup::all();
+            $data['mode'] = 'v';
+            
+            return view('backend.student.std_attendance.std_attendance_view', $data);
+        }
+       
 
 
         // $data['allData'] = AssignStudent::with(['student'])->where('year_id', $year_id)->where('class_id', $class_id)->where('shift_id', $shift_id)->where('group_id', $group_id)->get();
         // return $data;
-        return view('backend.student.std_attendance.std_attendance_add', $data);
+       
     }
 
     // StdAttendanceStore
     public function StdAttendanceStore(Request $request){
-        DD($request->all());
-        return redirect()->route('students.attendance.view')->with('success', 'Data Inserted Successfully');
+        $inputData =  $request->all();
+        foreach($inputData['student_id'] as $key => $value){
+
+            $model =new StdAttendance();
+            $model->id_no = $value;
+            $model->att_date = $inputData['date'];
+            $model->att_status = $inputData['att_status'][$value];
+            $model->login_time = $inputData['login_time'][$value];
+            $model->logout_time = $inputData['logout_time'][$value];
+            $model->save();
+
+
+        }
+        // StdAttendance
+
+
+
+
+        return redirect()->route('student.daily.att.view')->with('success', 'Data Inserted Successfully');
     }
 
     /**

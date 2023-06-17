@@ -36,7 +36,7 @@ class EmployeeSalaryController extends Controller
 
     	$user = User::find($id);
     	$previous_salary = $user->salary;
-    	$present_salary = (float)$previous_salary+(float)$request->increment_salary; 
+    	$present_salary = (float)$previous_salary+(float)$request->increment_salary;
     	$user->salary = $present_salary;
     	$user->save();
 

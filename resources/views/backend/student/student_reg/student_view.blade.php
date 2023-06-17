@@ -1,16 +1,11 @@
 @extends('admin.admin_master')
 @section('admin')
-
-
     <div class="content-wrapper">
         <div class="container-full">
             <!-- Content Header (Page header) -->
-
-
             <!-- Main content -->
             <section class="content">
                 <div class="row">
-
                     <div class="col-12">
                         <div class="box bb-3 border-warning">
                             <div class="box-header">
@@ -37,7 +32,6 @@
 
                                         </div> <!-- End Col md 4 -->
                                         <div class="col-md-4">
-
                                             <div class="form-group">
                                                 <h5>Class <span class="text-danger"> </span></h5>
                                                 <div class="controls">
@@ -53,40 +47,22 @@
                                                     </select>
                                                 </div>
                                             </div>
-
                                         </div> <!-- End Col md 4 -->
-
-
                                         <div class="col-md-4" style="padding-top: 25px;">
-
                                             <input type="submit" class="mb-5 btn btn-rounded btn-dark" name="search"
                                                 value="Search">
-
                                         </div> <!-- End Col md 4 -->
-
-
-
-
                                     </div><!--  end row -->
-
                                 </form>
-
-
                             </div>
                         </div>
                     </div> <!-- // end first col 12 -->
-
-
-
-
                     <div class="col-12">
-
                         <div class="box">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Student List</h3>
                                 <a href="{{ route('student.registration.add') }}" style="float: right;"
                                     class="mb-5 btn btn-rounded btn-success"> Add Student </a>
-
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -133,10 +109,11 @@
                                                                 href="{{ route('student.registration.promotion', $value->student_id) }}"
                                                                 class="btn btn-primary"><i class="fa fa-check"></i></a>
 
-                                                            <a target="_blank" title="Details"
+                                                            {{-- <a target="_blank" title="Details"
                                                                 href="{{ route('student.registration.details', $value->student_id) }}"
-                                                                class="btn btn-danger"><i class="fa fa-eye"></i></a>
-
+                                                                class="btn btn-danger"><i class="fa fa-eye"></i></a> --}}
+                                                            
+                                                           
                                                         </td>
 
                                                     </tr>
@@ -182,16 +159,20 @@
                                                         <td>
                                                             <a title="Edit"
                                                                 href="{{ route('student.registration.edit', $value->student_id) }}"
-                                                                class="btn btn-info"> <i class="fa fa-edit"></i> </a>
+                                                                class="btn btn-info  btn-sm"> <i class="fa fa-edit"></i> </a>
 
                                                             <a title="Promotion"
                                                                 href="{{ route('student.registration.promotion', $value->student_id) }}"
-                                                                class="btn btn-primary"><i class="fa fa-check"></i></a>
+                                                                class="btn btn-primary  btn-sm"><i class="fa fa-check"></i></a>
 
                                                             <a target="_blank" title="Details"
                                                                 href="{{ route('student.registration.details', $value->student_id) }}"
-                                                                class="btn btn-danger"><i class="fa fa-eye"></i></a>
+                                                                class="btn btn-danger  btn-sm"><i class="fa fa-eye"></i></a>
 
+                                                            <a href="{{ route('student.detail.add', $value->student_id) }}" title="Add Info"
+                                                                class="btn btn-success btn-sm">Add Info</a>
+                                                            <a href="{{ route('student.service.view', $value->student_id) }}" title="Add Service"
+                                                                class="btn btn-warning btn-sm">Add Service</a>
                                                         </td>
 
                                                     </tr>

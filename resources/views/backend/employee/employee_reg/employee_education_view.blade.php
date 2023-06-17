@@ -61,7 +61,6 @@
                                                         <a target="_blank"
                                                             href="{{ route('employee.registration.details', $employee->id) }}"
                                                             class="btn btn-danger btn-sm">Full Profile</a>
-
                                                     </td>
 
                                                 </tr>

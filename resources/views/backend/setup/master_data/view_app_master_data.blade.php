@@ -51,7 +51,6 @@
                                             @foreach ($allData as $key => $Institution)
                                                 
                                             @endforeach
-
                                         </tbody>
                                         <tfoot>
 

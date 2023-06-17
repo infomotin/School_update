@@ -144,7 +144,7 @@
                                                 <!-- 3rd Row -->
 
 
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
 
                                                     <div class="form-group">
                                                         <h5>Religion <span class="text-danger">*</span></h5>
@@ -172,7 +172,7 @@
 
 
 
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
 
                                                     <div class="form-group">
                                                         <h5>Date of Birth <span class="text-danger">*</span></h5>
@@ -185,19 +185,37 @@
                                                 </div> <!-- End Col md 4 -->
 
 
-                                                <div class="col-md-4">
-
-                                                    <div class="form-group">
-                                                        <h5>Discount <span class="text-danger">*</span></h5>
-                                                        <div class="controls">
-                                                            <input type="text" name="discount" class="form-control"
-                                                                required=""
-                                                                value="{{ $editData['discount']['discount'] }}">
+                                                <div class="col-md-6">
+                                                    <legend>Discount</legend>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <h5>Admission Fee<span class="text-danger">*</span></h5>
+                                                                <div class="controls">
+                                                                    <input type="text" name="discount[]" class="form-control" required="" value="{{$addmission_discount}}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+    
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <h5>Tution Fee<span class="text-danger">*</span></h5>
+                                                                <div class="controls">
+                                                                    <input type="text" name="discount[]" class="form-control" required="" value="{{$tuition_discount}}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <h5>Exam Fee<span class="text-danger">*</span></h5>
+                                                                <div class="controls">
+                                                                    <input type="text" name="discount[]" class="form-control" required="" value="{{$exam_discount}}">
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-
-                                                </div> <!-- End Col md 4 -->
-
+                                                </div> 
+                                                <!-- End Col md 6 -->
 
                                             </div> <!-- End 3rd Row -->
 

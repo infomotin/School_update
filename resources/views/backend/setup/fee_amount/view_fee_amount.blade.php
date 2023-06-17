@@ -35,6 +35,7 @@
 		</thead>
 		<tbody>
 			@foreach($allData as $key => $amount )
+			{{-- @php dd($amount) @endphp --}}
 			<tr>
 				<td>{{ $key+1 }}</td>
 				<td> {{ $amount['fee_cateogry']['name'] }}</td>				 
